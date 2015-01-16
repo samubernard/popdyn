@@ -1,0 +1,21 @@
+# Birth death process
+# implementation of the Stochastic Simulation Algorithm (Gillespie)
+# n(t) = number of individuals at time t
+# (b) birth: n -> n+1 with rate a + b*n
+# (d) death: n -> n-1 with rate g*n
+# Univ Lyon 1, Population Dynamics, 2014
+
+par a=100,b=0.1,g=0.5
+init N=100;
+r0=(a+b*N)+g*N
+tr'=tr-log(ran(1))/r0
+# choose birth or death
+pb=(a+b*N)/r0
+u=ran(1)
+rb=u<pb
+rd=u>=pb
+N'=max(1,N+rb-rd)
+@ bound=1000000,meth=discrete,total=500000
+@ xp=tr,yp=N
+@ xlo=0,ylo=0,xi=500,yhi=1000
+done
