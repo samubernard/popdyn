@@ -14,11 +14,11 @@ eta = 20.19;
 mu = 0.00311;
 delta = 0.3743;
 alpha = 1.636;
-beta = 2.0e-3;
+beta = 1e-2; %2.0e-3;
 
 %% Simulations
 %% Compute a single trajectory with defined initial condition in interval [0,tfinal]
-ic = [1,100];
+ic = [0.7616,268.7980];
 tspan = [0,100];
 options = odeset('RelTol',1e-3,'AbsTol',1e-6);
 sol = ode45(@f,tspan,ic,options);
@@ -38,6 +38,38 @@ loglog(nully(yy),yy,'r')
 axis([1e-1 5 1e-1 1e3])
 xlabel('x')
 ylabel('y')
+
+%% Steady states
+C0 = eta*(sigma/alpha - delta);
+C1 = sigma/alpha + rho - mu*eta - delta + delta*eta*beta;
+C2 = -mu + (mu*eta + delta - rho)*beta;
+C3 = mu*beta;
+
+C = [C3 C2 C1 C0];
+
+stst_y = roots(C);
+stst_x = sigma./(delta+mu*stst_y-rho*stst_y./(eta+stst_y));
+
+stst_x =[stst_x; sigma/delta];
+stst_y =[stst_y; 0];
+
+stst = [stst_x, stst_y];
+stst = stst(stst_x >= 0 & stst_y >= 0,:);
+
+[nbr_stst,~] = size(stst);
+
+%% Stability analysis
+for i = 1:nbr_stst
+    xx = stst(i,1);
+    yy = stst(i,2);
+    J = [rho*yy/(eta+yy) - mu*yy - delta, ((eta+yy)*rho*xx-rho*xx*yy)/(eta+yy)^2-mu*xx;
+    -yy, alpha*(1-2*beta*yy)-xx];
+    [V,D]=eig(J);
+    fprintf('STST %d, (x,y) = (%f,%f)\n',i,xx,yy);
+    J
+    D
+    V 
+end
 
 
 
