@@ -4,7 +4,7 @@ function out = immunogeneic_tumor_growth()
 %
 %   REFERENCE: Kuznetsov et al. (1994) Bull Math Biol 56, 295-321
 %
-%   Université Lyon 1 - 2014-2015
+%   University Lyon 1 - 2014-2015
 
 %% Non-dimensional model 
 %% System parameters

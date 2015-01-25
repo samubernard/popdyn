@@ -1,4 +1,15 @@
-function [tt,x,y] = stoch_tumor_growth(x0,y0)
+function [tt,x,y] = stoch_tumor_growth(X0,V)
+% STOCH_TUMOR_GROWTH stochastic version of the immune-tumor growth model
+%   [T,X,Y] = stoch_tumor_growth(X0,V) returns X the effector cell number, 
+%   Y the tumor cell number and T the times of birth/death events, with initial
+%   state X0 and simulation domain volume V.
+%
+%   See also
+%       IMMUNOGENEIC_TUMOR_GROWTH
+%
+%   REFERENCE: Kuznetsov et al. (1994) Bull Math Biol 56, 295-321
+%
+%   University Lyon 1 - 2014-2015
 
 %% Non-dimensional model 
 %% System parameters
@@ -20,13 +31,13 @@ tfinal = 100;
 
 
 while t<tfinal
-    r = [ sigma;
-          rho*x(k)*y(k)/(eta+y(k));
-          mu*x(k)*y(k);
+    r = [ V*sigma;
+          rho*x(k)*y(k)/(V*eta+y(k));
+          mu*x(k)*y(k)/V;
           delta*x(k);
           alpha*y(k);
-          alpha*beta*y(k)*y(k);
-          x(k)*y(k)];
+          alpha*beta*y(k)*y(k)/V;
+          x(k)*y(k)/V];
     sum_r = sum(r);
     dt = exprnd(1/sum_r); % exprnd takes the mean waiting time as argument, not the rate
     u = rand(1);
