@@ -7,4 +7,4 @@ Codes pour le cours Dynamique des populations - Master Ingénierie Mathématique
 
 * coupled_oscillators - système d'oscillateurs de Kuramoto
 
-* immunogeneic_tumor_growth.m - fichier Matlab pour le système de 2 EDO de Kuznetsov et al (1994) BMB
+* immunogeneic_tumor_growth - repertoire Matlab pour le système de 2 EDO de Kuznetsov et al (1994) BMB
