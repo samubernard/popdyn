@@ -8,3 +8,6 @@ Codes pour le cours Dynamique des populations - Master Ingénierie Mathématique
 * coupled_oscillators - système d'oscillateurs de Kuramoto
 
 * immunogeneic_tumor_growth - repertoire Matlab pour le système de 2 EDO de Kuznetsov et al (1994) BMB
+
+* discrete - équation logistique <code>x(t+1) = mu\*x(t)\*[1-x(t)]</code>
+
