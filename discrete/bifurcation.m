@@ -1,7 +1,7 @@
 function xx = bifurcation(map,x0,par,n)
 
 
-burnin = 1000;
+burnin = 250;
 ns = burnin + n;
 np = length(par);
 
