@@ -81,7 +81,7 @@ yyp = yy(nullx(yy)>0)
 plot(nullx(yyp),yyp,'k')
 // plot the y-nullcline
 plot(nully(yy),yy,'r')
-axis([1e-1 5 1e-1 1e3])
+mtlb_axis([1e-1 5 1e-1 1e3])
 xlabel('x')
 ylabel('y')
 
