@@ -14,7 +14,7 @@ eta = 20.19;
 mu = 0.00311;
 delta = 0.3743;
 alpha = 1.636;
-beta = 1e-2; %2.0e-3;
+beta = 2.0e-3;
 
 %% Simulations
 %% Compute a single trajectory with defined initial condition in interval [0,tfinal]
