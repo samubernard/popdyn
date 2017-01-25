@@ -1,8 +1,8 @@
-function [tt,x,y] = stoch_tumor_growth(X0,V)
+function [tt,x,y] = stoch_tumor_growth(x0,y0,V)
 % STOCH_TUMOR_GROWTH stochastic version of the immune-tumor growth model
-%   [T,X,Y] = stoch_tumor_growth(X0,V) returns X the effector cell number, 
+%   [T,X,Y] = stoch_tumor_growth(x0,y0,V) returns X the effector cell number, 
 %   Y the tumor cell number and T the times of birth/death events, with initial
-%   state X0 and simulation domain volume V.
+%   cell numbers (x0,y0) and simulation domain volume V.
 %
 %   See also
 %       IMMUNOGENEIC_TUMOR_GROWTH
@@ -23,6 +23,7 @@ beta = 2.0e-3;
 
 k=1;
 t=0;
+ts = 0;
 x(k)=x0;
 y(k)=y0;
 tt(k)=t;
@@ -69,8 +70,11 @@ while t<tfinal
     t = t+dt;
     tt(k+1)=t;
     k=k+1;
-    %fprintf('t=%f, x=%f, y=%f\n',t,x(k),y(k));
-
+    if ( fix(t/10) >= ts )
+        fprintf('t=%f, x=%f, y=%f\n',t,x(k),y(k));
+        ts = ts+1;
+    end
+        
     if y(k)==0
         fprintf('tumor eradicated\n');
         break        
