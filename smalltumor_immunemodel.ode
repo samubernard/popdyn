@@ -1,0 +1,11 @@
+# smalltumor_immunemodel.ode
+
+dx/dt=r*x*(1-x) -dx*x - g*x*w*exp(-c*x)
+dw/dt=s + a*x*w*exp(-c*x) - dw*w
+
+p r=10,dx=0.01,g=1,c=1
+p s=1,a=1,dw=1
+
+init x=1,w=1
+
+d
