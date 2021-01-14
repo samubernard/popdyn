@@ -11,3 +11,4 @@ Codes pour le cours Dynamique des populations - Master Ingénierie Mathématique
 
 * discrete - équation logistique <code>x(t+1) = mu\*x(t)\*[1-x(t)]</code>
 
+* ssa_example.R - exemple de script SSA pour un modèle simple de différenciation cellulaire
